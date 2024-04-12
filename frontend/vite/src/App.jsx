@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 // add the beginning of your app entry
@@ -8,6 +6,8 @@ import 'vite/modulepreload-polyfill'
 
 function App() {
   const [count, setCount] = useState(0)
+  const reactLogo = 'static/react.svg'
+  const viteLogo = 'static/vite.svg'
 
   return (
     <>
