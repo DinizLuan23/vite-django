@@ -14,8 +14,25 @@ SECRET_KEY = 'django-insecure-u$gvz4fm4pv=!%v65v$4)2zx&_=(4eyj%#s&qt65ij%&@l3#+b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+CORS_ALLOWED_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+   'https://localhost:5173',
+   'http://127.0.0.1:5173'
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication'
+    ]
+}
+
+INTERNAL_IPS = [ 'localhost', '127.0.0.1' ]
 
 # Application definition
 
@@ -27,16 +44,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frontend.apps.FrontendConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'vitedjango.urls'
@@ -110,6 +130,7 @@ STATICFILES_DIRS = [
    os.path.join(BASE_DIR, 'frontend', 'vite', 'public'),
    os.path.join(BASE_DIR, 'frontend', 'vite', 'dist'),
 ]
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
