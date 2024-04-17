@@ -32,6 +32,9 @@ REST_FRAMEWORK = {
     ]
 }
 
+LOGIN_URL = '/api-chat/chat-logout'
+SESSION_COOKIE_AGE = 10
+
 INTERNAL_IPS = [ 'localhost', '127.0.0.1' ]
 
 # Application definition
@@ -56,7 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+    'vitedjango.middleware.RedirectToDefaultPageMiddleware',
 ]
 
 ROOT_URLCONF = 'vitedjango.urls'
